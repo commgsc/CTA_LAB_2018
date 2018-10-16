@@ -1,45 +1,6 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: node-app
-  labels:
-    app: sandbox-node
-    tier: frontend
-spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: sandbox-node
-        tier: frontend
-    spec:
-      containers:
-      - name: node-app
-        image: "yamunaji/tmf_sample_app:latest"
-        imagePullPolicy: IfNotPresent
-        ports:
-        - name: http
-          containerPort: 3000
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: node-app
-  labels:
-    app: sandbox-node
-spec:
-  type: NodePort
-  selector:
-    app: sandbox-node
-  ports:
-  - port: 3000  
-    targetPort: 3000
-    protocol: TCP
-    name: node-app-port
----
-apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
   name: nodered-app
   labels:
     app: sandbox-nodered
@@ -54,10 +15,10 @@ spec:
     spec:
       containers:
       - name: nodered-app
-        image: "jdraju/node-red-watson-tmf:latest"
+        image: "tomyogms/noderedapp:v1"
         env:
             - name: FLOWS
-              value: "my_flows.json"
+              value: "node-red-flow.json"
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
@@ -82,7 +43,33 @@ spec:
     protocol: TCP
     name: nodered-app-port
 ---
-
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: tmf-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tmf-pv-claim
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi        
+---    
 ### MongoDB Service
 apiVersion: v1
 kind: Service
@@ -131,33 +118,6 @@ spec:
         - name: tmf-pv-storage
           persistentVolumeClaim:
             claimName: tmf-pv-claim
----
-kind: PersistentVolume
-apiVersion: v1
-metadata:
-  name: tmf-pv-volume
-  labels:
-    type: local
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 5Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data"
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: tmf-pv-claim
-spec:
-  storageClassName: manual
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi            
 ---
 ### MQTT deployment
 apiVersion: extensions/v1beta1
@@ -272,7 +232,6 @@ spec:
         - name: http
           containerPort: 2181
 ---
-
 ### Zookeeper Service
 apiVersion: v1
 kind: Service
@@ -290,7 +249,6 @@ spec:
     protocol: TCP
     name: sandbox-zookeeper-port
 ---
-
 ### Kafka Deployment
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -324,7 +282,6 @@ spec:
         - name: http
           containerPort: 9092
 ---
-
 ### Kafka Service
 apiVersion: v1
 kind: Service
@@ -342,3 +299,46 @@ spec:
     targetPort: 9092
     protocol: TCP
     name: sandbox-kafka-port
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: max-facial-age-estimator
+  labels:
+    app: sandbox-nodered
+    tier: backend
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sandbox-nodered
+        tier: backend
+    spec:
+      containers:
+      - name: max-facial-age-estimator
+        image: "tomyogms/facial-age:v1"
+        ports:
+        - name: http
+          containerPort: 5000
+
+---
+#faceAgeDetection
+apiVersion: v1
+kind: Service
+metadata:
+  name: max-facial-age-estimator
+  labels:
+    tier: backend
+spec:
+  selector:
+    app: sandbox-nodered
+    tier: backend
+  ports:
+   - port: 5000
+     targetPort: 5000
+     protocol: TCP
+     name: face-age-port
+  type: NodePort
+
+---

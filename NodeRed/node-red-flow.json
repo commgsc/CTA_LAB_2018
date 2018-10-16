@@ -1,10 +1,10 @@
 [
     {
-        "id": "2654ee7f.e34362",
+        "id": "16803825.6bc958",
         "type": "watson-conversation-v1",
-        "z": "30a98903.561c16",
+        "z": "2e7d09d5.0a3ba6",
         "name": "My Bot",
-        "workspaceid": "88a9b9b7-9e3b-4bbd-a2d3-0757108aa558",
+        "workspaceid": "be26163a-5985-49a7-b53a-3b474411759c",
         "multiuser": false,
         "context": false,
         "empty-payload": true,
@@ -12,217 +12,217 @@
         "service-endpoint": "https://gateway.watsonplatform.net/assistant/api/v1/workspaces/ec70d037-81f9-4405-8199-8e3518871f27/message/",
         "timeout": "",
         "optout-learning": false,
-        "x": 768,
-        "y": 384,
+        "x": 770,
+        "y": 400,
         "wires": [
             [
-                "d4c7fcd3.96543"
+                "b96856a0.cc1a98"
             ]
         ]
     },
     {
-        "id": "f2b11d9d.dd74b",
+        "id": "4e3693c0.85cdcc",
         "type": "http in",
-        "z": "30a98903.561c16",
+        "z": "2e7d09d5.0a3ba6",
         "name": "BOT Home Page",
         "url": "/bot",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 273,
-        "y": 280,
+        "x": 265,
+        "y": 296,
         "wires": [
             [
-                "53c07abf.9e2114"
+                "60821be7.c13234"
             ]
         ]
     },
     {
-        "id": "41ea854c.da2eac",
+        "id": "294b1fda.1fce8",
         "type": "template",
-        "z": "30a98903.561c16",
+        "z": "2e7d09d5.0a3ba6",
         "name": "HTML ",
         "field": "payload",
         "fieldType": "msg",
         "format": "handlebars",
         "syntax": "mustache",
-        "template": "<!--\n# Copyright 2018 IBM\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#     http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n-->\n\n<html>\n  <head>\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>\n\t  My BOT\n\t</title>\n\t<link rel=\"stylesheet\"\n        type=\"text/css\"\n        href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" />\n    <style>\n    #id_botchathistory{\n        height: 80%;\n        overflow-y: auto;\n        padding-right:20px;\n    }\n    .Bot .message{\n        font-size: 1rem;\n        color: #323232;\n        letter-spacing: .015rem;\n        line-height: 1.3125rem;\n        background: #ecf0f2;\n        border-radius: 18px;\n        text-align: left;\n        display: inline-block;\n        min-width: 6rem;\n        max-width: 100%;\n        word-wrap: break-word;\n        margin-top: 5px;\n        margin-bottom: 5px;\n        margin-left:10px;\n    }\n    .You .message{\n        font-size: 1rem;\n        color: white;\n        letter-spacing: .015rem;\n        line-height: 1.3125rem;\n        background: #3151b7;\n        border-radius: 18px;\n        text-align: left;\n        display: inline-block;\n        min-width: 6rem;\n        max-width: 100%;\n        word-wrap: break-word;\n        margin-top: 5px;\n        margin-bottom: 5px;\n        margin-right:15px;\n    }\n    .You { text-align:right;}\n    p{\n        padding: 1.5rem;\n        font-size: 1.5rem;\n    }\n    input{\n        margin-top: 1rem;\n        border: 2px solid #464646;\n        background-color: #fff;\n        padding: .6em 1em;\n        font-size: 1em;\n        font-weight: 300;\n        line-height: normal;\n        border-radius: 18px;\n    }\n    table{\n        margin-left:55px;\n        margin-bottom:5px;\n        width : 45%;\n        font-weight: 300;\n        border-spacing:0;\n        border-collapse: collapse;\n    }\n    table.th{\n        text-align: left;\n        margin: 0px;\n        padding: 6px 13px;\n    }\n    table, th, td {\n        text-align: center;\n        padding-bottom: 5px;\n        padding-top: 5px;\n    }\n    .time{\n        font-family: Inconsolata,monospace;\n        color: #959595;\n        margin-left:55px;\n        margin-right:55px;\n    }\n    img{\n        width:39px;height:36px;margin-right:5px;\n    }\n    .You img{\n        float:right;\n        margin-top:5px;\n    }\n    </style>\n  </head>\n  <body contentType=\"text/html\" style=\"height: 100%;\">\n    <div style=\"height: 6%;background-color: #3151b7;\">  \n    <div class=\"header\" style=\"width:100%;\">\n        <div style=\"width: 75%;padding-top: 10px; margin-left: auto;margin-right: auto;display:flex;\">\n        <h3 style=\"color:#fff;margin-top:5px;font-size:30px;\">TMForum BOT</h1>\n        </div>\n    </div>\n    </div>\n    <div class=\"container\">\n      <div id=\"no-script\"class=\"bg-info\">\n        This application needs JavaScript enabled in your browser!\n      </div>\n      <div id=\"id_contextdump\"></div>\n      <div id=id_botchathistory>\n\t  </div>\n\t  \n\t  <div>\n\t      <form action=\"javascript:onChatClick();\">\n\t        <input type=\"submit\" value=\"Search\" style=\"float: right\" />\n            <div style=\"overflow: hidden; padding-right: .5em;\">\n                <input type=\"text\" name=\"chattext\" id=\"id_chattext\" placeholder=\"Type here\" style=\"width:100%;\">\n            </div>\n            <br/><br/>\n\t      </form>\n\t  </div>\n    </div>\n    \n    <script type=\"text/javascript\" src=\"https://code.jquery.com/jquery-2.1.4.min.js\"></script>\n    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n\n    <script>{{{payload.script}}}</script>\n  </body>\n</html>\n",
-        "x": 693.0000114440918,
-        "y": 279.00000381469727,
+        "template": "<!--\n# Copyright 2018 IBM\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#     http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n-->\n\n<html>\n  <head>\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>\n\t  My BOT\n\t</title>\n\t<link rel=\"stylesheet\"\n        type=\"text/css\"\n        href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" />\n    <style>\n    #id_botchathistory{\n        height: calc(100% - 128px);\n        overflow-y: auto;\n        padding-right: 20px;\n        margin-top: 20px;\n    }\n    .Bot .message{\n        font-size: 1rem;\n        color: #323232;\n        letter-spacing: .015rem;\n        line-height: 1.3125rem;\n        background: white;\n        border-radius: 18px;\n        text-align: left;\n        display: inline-block;\n        min-width: 6rem;\n        max-width: 100%;\n        word-wrap: break-word;\n        margin-top: 5px;\n        margin-bottom: 5px;\n        margin-left:10px;\n    }\n    .You .message{\n        font-size: 1rem;\n        color: white;\n        letter-spacing: .015rem;\n        line-height: 1.3125rem;\n        background: #0072c3;\n        border-radius: 18px;\n        text-align: left;\n        display: inline-block;\n        min-width: 6rem;\n        max-width: 100%;\n        word-wrap: break-word;\n        margin-top: 5px;\n        margin-bottom: 5px;\n        margin-right:15px;\n    }\n    .You { text-align:right;}\n    p{\n        padding: 1.5rem;\n        font-size: 1.5rem;\n        margin: 0;\n    }\n    input{\n        margin-top: 1rem;\n        border: 2px solid #464646;\n        background-color: #fff;\n        padding: .6em 1em;\n        font-size: 1em;\n        font-weight: 300;\n        line-height: normal;\n        border-radius: 18px;\n        outline: none;\n    }\n    input[type=\"submit\"] {\n        background-color: #373d42;\n        border-color: #373d42;\n        color: white;\n    }\n    table{\n        margin-left:55px;\n        margin-bottom:5px;\n        width : 45%;\n        font-weight: 300;\n        border-spacing:0;\n        border-collapse: collapse;\n    }\n    table.th{\n        text-align: left;\n        margin: 0px;\n        padding: 6px 13px;\n    }\n    table, th, td {\n        text-align: center;\n        padding-bottom: 5px;\n        padding-top: 5px;\n    }\n    .time{\n        font-family: Inconsolata,monospace;\n        color: #959595;\n        margin-left:55px;\n        margin-right:55px;\n    }\n    img:not(.login-img) {\n        width:39px;height:36px;margin-right:5px;\n    }\n    .You img{\n        float:right;\n        margin-top:5px;\n    }\n    body {\n        background-color: #f2f4f8;\n        height: 100%;\n        font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;\n    }\n    #user-input-container {\n        position: fixed;\n        left: 0px;\n        bottom: 0px;\n        width: 100%;\n    }\n    .chat-container {\n        width: calc(80% + 70px);\n        margin: auto;\n    }\n    #login-overlay {\n        position: absolute;\n        width: 100%;\n        height: 100%;\n        left: 0px;\n        top: 0px;\n        z-index: 1;\n        background-color: white;\n    }\n    #login-loading {\n        position: absolute;\n        width: 50%;\n        height: 100%;\n        left: 0px;\n        top: 0px;\n        background-color: white;\n        font-size: 32px;\n        color: #707070;\n        text-align: center;\n    }\n    #login-prompt {\n        position: absolute;\n        width: 50%;\n        height: 100%;\n        left: 0px;\n        top: 0px;\n        background-color: white;\n        padding-top: 33px;\n        padding-left: 55px;\n    }\n    #login-tmforum {\n        position: absolute;\n        width: 25%;\n        height: 50%;\n        left: 50%;\n        top: 0px;\n        background-color: black;\n        text-align: center;\n    }\n    #login-watson {\n        position: absolute;\n        width: 25%;\n        height: 50%;\n        right: 0px;\n        top: 0px;\n        background-color: #0F6FF9;\n        text-align: center;\n    }\n    #login-ibm {\n        position: absolute;\n        width: 50%;\n        height: 50%;\n        bottom: 0px;\n        right: 0px;\n        background-color: #054ADA;\n        text-align: center;\n    }\n    #login-tmforum img, #login-watson img {\n        width: 66%;\n        display: inline-block;\n        vertical-align: middle;\n    }\n\n    #login-ibm img {\n        width: 33%;\n        display: inline-block;\n        vertical-align: middle;\n    }\n    .vertical-center-helper {\n        display: inline-block;\n        height: 100%;\n        width: 0%;\n        vertical-align: middle;\n    }\n    #login-prompt > div:first-of-type {\n        font-size: 64px;\n        color: #707070;\n    }\n    #login-upload-row {\n        margin-top: 85px;\n    }\n    #login-upload-row > div {\n        display: inline-block;\n        vertical-align: middle;\n    }\n    #login-upload-row img {\n        width: 138px;\n        border: 1px solid #707070;\n        padding: 33px 28px 23px 28px;\n    }\n    #upload-button {\n        background-color: #0F6FF9;\n        border-radius: 15px;\n        color: white;\n        font-weight: bold;\n        font-size: 16px;\n        line-height: 30px;\n        padding: 0px 25px;\n        text-align: center;\n        margin-top: 8px;\n        display: block;\n    }\n    #login-upload-row > label {\n        color: #707070;\n        font-size: 24px;\n        margin-left: 30px;\n    }\n    #login-alt-select-prompt {\n        margin-top: 50px;\n        color: #707070;\n        font-size: 24px;\n    }\n    #login-alt-images-row {\n        margin-top: 100px;\n    }\n    #login-alt-images-row > div {\n        width: 108px;\n        height: 108px;\n        border: 1px solid #707070;\n        overflow: hidden;\n        display: inline-block;\n        cursor: pointer;\n    }\n    #login-alt-images-row > div:not(:first-of-type) {\n        margin-left: 24px;\n    }\n\n    #login-overlay input[type=\"file\"] {\n        display: none;\n    }\n    label {\n        cursor: pointer;\n    }\n    .login-slow-load {\n        opacity: 0;\n        animation: fade-in 0.5s ease-in-out 1.5s;\n        animation-fill-mode: forwards;\n    }\n    @keyframes fade-in {\n        0%    {opacity: 0}\n        100%  {opacity: 1}\n    }\n    .login-vert-center-helper {\n        height: 100%;\n        width: 0%;\n    }\n    #login-loading > * {\n        display: inline-block;\n        vertical-align: middle;\n    }\n\n    </style>\n  </head>\n  <body contentType=\"text/html\">\n    <div id=\"login-overlay\">\n        <div id=\"login-loading\">\n            <div class=\"login-vert-center-helper\"></div>\n            <span>Analyzing Picture...</span>\n        </div>\n        <div id=\"login-prompt\">\n            <div>Welcome.</div>\n            <div id=\"login-upload-row\">\n                <div>\n                    <label for=\"upload-button\"><img class=\"login-img\" src=\"https://github.com/commgsc/CTA_LAB_2018/blob/master/images/person.png?raw=true\" /></label>\n                    <input type=\"file\" accept=\"image/*\" id=\"upload-button\" name=\"upload-button\" onchange=\"handleFileUpload(this.files)\" />\n                    <label id=\"upload-button\" for=\"upload-button\">Upload</label>\n                </div>\n                <label for=\"upload-button\">Upload your image</label>\n            </div>\n            <div class=\"login-slow-load\" id=\"login-alt-select-prompt\"><span>- or - Select one from below</span></div>\n            <div class=\"login-slow-load\" id=\"login-alt-images-row\">\n                <div><img onclick=\"uploadPlaceholderImage(this)\" data-age=\"29\" class=\"login-img\" src=\"https://github.com/commgsc/CTA_LAB_2018/blob/master/images/alt-1.jpg?raw=true\" style=\"height: 318px; position: relative; right: 150px; bottom: 80px;\" /></div>\n                <div><img onclick=\"uploadPlaceholderImage(this)\" data-age=\"38\" class=\"login-img\" src=\"https://github.com/commgsc/CTA_LAB_2018/blob/master/images/alt-2.jpeg?raw=true\" style=\"height: 108px;\" /></div>\n                <div><img onclick=\"uploadPlaceholderImage(this)\" data-age=\"24\" class=\"login-img\" src=\"https://github.com/commgsc/CTA_LAB_2018/blob/master/images/alt-3.jpg?raw=true\" style=\"height: 198px; position: relative; right: 102px; bottom: 20px;\" /></div>\n                <div><img onclick=\"uploadPlaceholderImage(this)\" data-age=\"61\" class=\"login-img\" src=\"https://github.com/commgsc/CTA_LAB_2018/blob/master/images/alt-4.jpg?raw=true\" style=\"width: 108px;\" /></div>\n            </div>\n        </div>\n        <div id=\"login-tmforum\"><div class=\"vertical-center-helper\"></div><img class=\"login-img\" src=\"https://github.com/commgsc/CTA_LAB_2018/blob/master/images/tmf-logo-2018.png?raw=true\" /></div>\n        <div id=\"login-watson\"><div class=\"vertical-center-helper\"></div><img class=\"login-img\" src=\"https://github.com/commgsc/CTA_LAB_2018/blob/master/images/Watson_IoT.png?raw=true\" /></div>\n        <div id=\"login-ibm\"><div class=\"vertical-center-helper\"></div><img class=\"login-img\" src=\"https://github.com/commgsc/CTA_LAB_2018/blob/master/images/ibm.png?raw=true\" /></div>\n    </div>\n    <div style=\"height: 55px;background-color: #002b50;\">  \n    <div class=\"header\" style=\"width:100%;\">\n        <div style=\"width: calc(80% + 70px); padding-top: 10px; margin-left: auto; margin-right: auto; display: flex;\">\n        <h3 style=\"color:#fff; margin-top: 0px; font-size:30px;\">TMForum BOT</h1>\n        </div>\n    </div>\n    </div>\n    <div class=\"chat-container\">\n      <div id=\"no-script\"class=\"bg-info\">\n        This application needs JavaScript enabled in your browser!\n      </div>\n      <div id=\"id_contextdump\"></div>\n      <div id=id_botchathistory>\n\t  </div>\n\t  \n\t  <div id=\"user-input-container\">\n\t      <form action=\"javascript:onChatClick();\" style=\"text-align: center;\">\n            <div style=\"display: inline-block; width: 80%; padding-right: .5em;\">\n                    <input type=\"text\" name=\"chattext\" id=\"id_chattext\" placeholder=\"Type here\" style=\"width:100%;\">\n            </div>\n\t        <input type=\"submit\" value=\"Submit\" style=\"display: inline-block\" />\n\t      </form>\n\t  </div>\n    </div>\n    \n    <script type=\"text/javascript\" src=\"https://code.jquery.com/jquery-2.1.4.min.js\"></script>\n    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n\n    <script>{{{payload.script}}}</script>\n  </body>\n</html>\n",
+        "x": 690,
+        "y": 290,
         "wires": [
             [
-                "fae77dae.e0526"
+                "e489c80b.8d2408"
             ]
         ]
     },
     {
-        "id": "fae77dae.e0526",
+        "id": "e489c80b.8d2408",
         "type": "http response",
-        "z": "30a98903.561c16",
+        "z": "2e7d09d5.0a3ba6",
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 921,
-        "y": 274,
+        "x": 913,
+        "y": 290,
         "wires": []
     },
     {
-        "id": "1eaef7c5.87d958",
+        "id": "6e91468b.787138",
         "type": "http in",
-        "z": "30a98903.561c16",
+        "z": "2e7d09d5.0a3ba6",
         "name": "BOT REST API",
         "url": "/botchat",
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 273,
-        "y": 386,
+        "x": 265,
+        "y": 402,
         "wires": [
             [
-                "ac9e8a96.9e7ad8"
+                "44942faa.bfc5b"
             ]
         ]
     },
     {
-        "id": "981bbf7c.af",
+        "id": "b9390159.c99e7",
         "type": "http response",
-        "z": "30a98903.561c16",
+        "z": "2e7d09d5.0a3ba6",
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1024,
-        "y": 381,
+        "x": 1016,
+        "y": 397,
         "wires": []
     },
     {
-        "id": "dce61d42.485ed",
+        "id": "46750009.52b2e",
         "type": "function",
-        "z": "30a98903.561c16",
+        "z": "2e7d09d5.0a3ba6",
         "name": "Pre Service Processing",
-        "func": "// stash away incoming data\nmsg.mydata = {};\nmsg.mydata.messagein = msg.req.body.msgdata;\nmsg.payload = msg.mydata.messagein;\n\nmsg.req.body.context.private={\n\t\t\"my_credentials\": {\n\t\t\t\"user\": msg.user,\n\t\t\t\"password\": msg.password\n\t\t}\n\t}\n\noriginalcontext = msg.req.body.context\n\nmsg.params = { \"context\": originalcontext};\n//msg.params = { \"context\": wsk};\n\nreturn msg;",
+        "func": "// stash away incoming data\nmsg.mydata = {};\nmsg.mydata.messagein = msg.req.body.msgdata;\nmsg.payload = msg.mydata.messagein;\n\nmsg.req.body.context.private={\n\t\t\"my_credentials\": {\n\t\t\t\"user\": msg.user,\n\t\t\t\"password\": msg.password\n\t\t}\n\t}\n\noriginalcontext = msg.req.body.context\n\nmsg.params = { \"context\": originalcontext,\n    \"username\":\"b716356f-8834-489d-8e01-3081ff151e83\",\n    \"password\":\"kcV8tMLgXAc0\"\n};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 538,
-        "y": 404,
+        "x": 530,
+        "y": 420,
         "wires": [
             [
-                "2654ee7f.e34362",
-                "98385631.fe65e8"
+                "16803825.6bc958",
+                "c277ced.325863"
             ]
         ]
     },
     {
-        "id": "d4c7fcd3.96543",
+        "id": "b96856a0.cc1a98",
         "type": "function",
-        "z": "30a98903.561c16",
+        "z": "2e7d09d5.0a3ba6",
         "name": "Post Service Processing",
         "func": "msg.mydata.messageout = msg.payload;\n\nmsg.payload = {};\nmsg.payload.botresponse = msg.mydata;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 888,
-        "y": 477,
+        "x": 880,
+        "y": 493,
         "wires": [
             [
-                "981bbf7c.af",
-                "f3a4a8da.8c1a98"
+                "b9390159.c99e7",
+                "5e69e1f1.a4af5"
             ]
         ]
     },
     {
-        "id": "53c07abf.9e2114",
+        "id": "60821be7.c13234",
         "type": "template",
-        "z": "30a98903.561c16",
+        "z": "2e7d09d5.0a3ba6",
         "name": "JavaScript",
         "field": "payload.script",
         "fieldType": "msg",
         "format": "javascript",
         "syntax": "mustache",
-        "template": "$(document).ready(function() {\n    javascriptCheck();\n    $('#id_contextdump').hide();\n    enterbutton();\n    invokeAjax (\"Hello\");\n});\n\n// if javascript is enabled on the browser then can remove the warning message\nfunction javascriptCheck() {\n    $('#no-script').remove();\n}\n\n// creates div for interaction with bot      \nfunction createNewDiv(who, message) {\n    var img =  (who === 'Bot') ? 'bot': 'user';\n    var msgdiv = '<div><img class='+who+'img src=\"https://github.com/commgsc/TMF_ActionWeek_Clinic_Lab/blob/master/images/'+img+'.png?raw=true\" /><div class=\"message\"><p>'+message+'</p></div></div>';\n    var timediv = '<div class=\"time\">' + new Date().toLocaleTimeString() + '</div>';\n    return $('<div class='+who+'></div>').append(msgdiv,timediv);\n}\n\n// appends latest communication with bot to botchathistory\nfunction chat(person, txt) {\n    $('#id_botchathistory').append(createNewDiv(person, txt));\n}    \n\n// creates div for interaction with bot      \nfunction createNewTable(who, message, note) {\n    var img =  (who === 'Bot') ? 'bot': 'user';\n    message = JSON.parse(message);\n    var keys = [];\n    keys = Object.keys(message[0]);\n\n    var table_body = '<table border=\"1\" id=\"tickets\"><thead><tr>';\n    for(k = 0; k<keys.length;k++){\n        table_body+= '<th>'+keys[k]+'</th>';\n    }\n    table_body += '</tr></thead><tbody>';\n    \n    for(i = 0; i<message.length;i++){\n        msg = message[i];\n        table_body+='<tr>';\n        for(j = 0;j<keys.length;j++){\n            table_body +='<td>'+msg[keys[j]]+'</td>';\n        }\n        table_body+='</tr>';\n\n    }\n    table_body+='</tbody></table>';\n    //var txt = who + ' : ' + table_body;\n    var txt = '<div><img class='+who+'img src=\"https://github.com/commgsc/TMF_ActionWeek_Clinic_Lab/blob/master/images/'+img+'.png?raw=true\" /><div class=\"message\"><p>'+note+'</p></div></div>';\n    var timediv = '<div class=\"time\">' + new Date().toLocaleTimeString() + '</div>';\n    return $('<div class='+who+'></div>').append(txt,table_body,timediv);\n}\n\n// appends latest communication with bot to botchathistory\nfunction chatTab(person, txt, note) {\n    $('#id_botchathistory').append(createNewTable(person, txt, note));\n}  \n\n// sets pressing of enter key to perform same action as send button\nfunction enterbutton(){\n    $(function() {\n        $(\"form input\").keypress(function (e) {\n        if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {\n             onChatClick();\n             return false;\n        } else {\n        return true;\n        }\n     });\n    });\n}\n\n// User has entered some text.\nfunction onChatClick() {\n    var txt = $('#id_chattext').val();\n    chat('You', txt); \n    invokeAjax(txt);\n    $('#id_chattext').val('');\n}\n\nfunction processOK(response) {\n    /*console.log('response',response);\n    console.log('messageout',response.botresponse.messageout);*/\n    //console.log('output text',response.botresponse.messageout.output.text);\n    var mesg = response.botresponse.messageout.output.text;\n    console.log('message',mesg);\n    var context = response.botresponse.messageout.context.summary;\n    if(context == 'from-watson-table'){\n        console.log('in table');\n        var note = response.botresponse.messageout.output.text[0];\n        console.log('note',note)\n        var msg = response.botresponse.messageout.output.text[1].result;\n        chatTab('Bot', msg, note);\n    }\n    else{\n        console.log('in watson');\n        if(mesg.length > 1){\n            if(typeof(mesg[1]) === 'string'){\n                console.log('1');\n                chat('Bot', response.botresponse.messageout.output.text.join('\\n'));\n            }\n            else if(typeof(mesg[1]) === 'object'){\n                console.log('2');\n                chat('Bot', JSON.stringify(mesg[1].ticket,null,4));\n            }\n        }\n        else{\n            console.log('3');\n            chat('Bot', response.botresponse.messageout.output.text.join('\\n'));\n        }\n    }\n    $('#id_contextdump').data('convContext', response.botresponse.messageout.context);\n}\n      \nfunction processNotOK() {\n    chat('Error', 'Error whilst attempting to talk to Bot');\n}\n      \nfunction invokeAjax(message) {\n    var contextdata = $('#id_contextdump').data('convContext');\n    console.log('contextdata',contextdata);\n        \n    var ajaxData = {};\n    ajaxData.msgdata = message;\n    if (contextdata) {\n        ajaxData.context = contextdata;    \n    }\n    else{\n        ajaxData.context = {\"private\":\"\"}\n    }\n\n    $.ajax({\n        type: 'POST',\n        url: 'botchat',\n        data: ajaxData,\n        success: processOK,\n        error: processNotOK\n    });\n}",
+        "template": "\n$(document).ready(function() {\n    checkProtocol();\n    javascriptCheck();\n    $('#id_contextdump').hide();\n    enterbutton();\n    invokeAjax (\"Hello\");\n});\n\n// some \"global\" variables so it's easier to change:\nconst PREDICTION_URL = \"http://184.172.214.2:30032/model/predict\"; //used for image upload ajax call\nconst BOTCHAT_URL = \"botchat\"; //used in bot ajax calls\nconst IMGSRC_URL = \"https://github.com/commgsc/CTA_LAB_2018/blob/master/images/\"; //location that the supporting images exist at -- expects GitHub URL and adds '?raw=true' when used... note: HTML's <img> src doesnt use this reference\n\n// since we are hitting an http-only resource, the login functionality won't work if we're on an https protocol by default in most browsers\nfunction checkProtocol() {\n    if(window.location.protocol.toLowerCase() === \"https:\") {\n        window.location.replace(window.location.href.replace('https', 'http'));\n    }\n}\n\n// if javascript is enabled on the browser then can remove the warning message\nfunction javascriptCheck() {\n    $('#no-script').remove();\n}\n\n// creates div for interaction with bot\nfunction createNewDiv(who, message) {\n    var img =  (who === 'Bot') ? 'bot': 'user';\n    var msgdiv = '<div><img class='+who+'img src=\"'+IMGSRC_URL+img+'.png?raw=true\" /><div class=\"message\"><p>'+message+'</p></div></div>';\n    var timediv = '<div class=\"time\">' + new Date().toLocaleTimeString() + '</div>';\n    return $('<div class='+who+'></div>').append(msgdiv,timediv);\n}\n\n// appends latest communication with bot to botchathistory\nfunction chat(person, txt) {\n    $('#id_botchathistory').append(createNewDiv(person, txt));\n}    \n\n// creates div for interaction with bot      \nfunction createNewTable(who, message, note) {\n    var img =  (who === 'Bot') ? 'bot': 'user';\n    message = JSON.parse(message);\n    var keys = [];\n    keys = Object.keys(message[0]);\n\n    var table_body = '<table border=\"1\" id=\"tickets\"><thead><tr>';\n    for(k = 0; k<keys.length;k++){\n        table_body+= '<th>'+keys[k]+'</th>';\n    }\n    table_body += '</tr></thead><tbody>';\n    \n    for(i = 0; i<message.length;i++){\n        msg = message[i];\n        table_body+='<tr>';\n        for(j = 0;j<keys.length;j++){\n            table_body +='<td>'+msg[keys[j]]+'</td>';\n        }\n        table_body+='</tr>';\n\n    }\n    table_body+='</tbody></table>';\n    //var txt = who + ' : ' + table_body;\n    var txt = '<div><img class='+who+'img src=\"'+IMGSRC_URL+img+'.png?raw=true\" /><div class=\"message\"><p>'+note+'</p></div></div>';\n    var timediv = '<div class=\"time\">' + new Date().toLocaleTimeString() + '</div>';\n    return $('<div class='+who+'></div>').append(txt,table_body,timediv);\n}\n\n// appends latest communication with bot to botchathistory\nfunction chatTab(person, txt, note) {\n    $('#id_botchathistory').append(createNewTable(person, txt, note));\n}  \n\n// sets pressing of enter key to perform same action as send button\nfunction enterbutton(){\n    $(function() {\n        $(\"form input\").keypress(function (e) {\n        if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {\n             onChatClick();\n             return false;\n        } else {\n        return true;\n        }\n     });\n    });\n}\n\n// User has entered some text.\nfunction onChatClick() {\n    var txt = $('#id_chattext').val();\n    chat('You', txt); \n    invokeAjax(txt);\n    $('#id_chattext').val('');\n}\n\nfunction processOK(response) {\n    /*console.log('response',response);\n    console.log('messageout',response.botresponse.messageout);*/\n    //console.log('output text',response.botresponse.messageout.output.text);\n    var mesg = response.botresponse.messageout.output.text;\n    console.log('message',mesg);\n    var context = response.botresponse.messageout.context.summary;\n    if(context == 'from-watson-table'){\n        console.log('in table');\n        var note = response.botresponse.messageout.output.text[0];\n        console.log('note',note);\n        var msg = response.botresponse.messageout.output.text[1].result;\n        chatTab('Bot', msg, note);\n    }\n    else{\n        console.log('in watson');\n        if(mesg.length > 1){\n            if(typeof(mesg[1]) === 'string'){\n                console.log('1');\n                chat('Bot', response.botresponse.messageout.output.text.join('\\n'));\n            }\n            else if(typeof(mesg[1]) === 'object'){\n                console.log('2');\n                chat('Bot', JSON.stringify(mesg[1].ticket,null,4));\n            }\n        }\n        else{\n            console.log('3');\n            chat('Bot', response.botresponse.messageout.output.text.join('\\n'));\n        }\n    }\n    $('#id_contextdump').data('convContext', response.botresponse.messageout.context);\n}\n      \nfunction processNotOK() {\n    chat('Error', 'Error whilst attempting to talk to Bot');\n}\n\nfunction handleFileUpload(files) {\n    $(\"#login-prompt\").hide();\n    const file = files[0];\n    const fd = new FormData();\n    fd.append(\"image\", file);\n    fetch(PREDICTION_URL, {\"credentials\":\"omit\",\"headers\":{},\"referrer\":PREDICTION_URL,\"referrerPolicy\":\"no-referrer-when-downgrade\",\"body\":fd,\"method\":\"POST\",\"mode\":\"cors\"})\n    .then(resp => { //check for error state\n        console.log('checking status');\n        if( !resp.ok ) {\n            console.log(resp.statusText);\n            throw new Error(resp.statusText);\n        }\n        return resp;\n    })\n    .then(resp => resp.json()) //convert ReadableStream data to JSON\n    .then(resJson => resJson.predictions[0].age_estimation) //cherrypick the age\n    .then(setUserAge)\n    .catch(err => { //if something goes wrong, just move forward with bot\n        console.log(err);\n        chat('Bot', 'Sorry, something went wrong with analyzing your image.  What else can I help you with?');\n        $(\"#login-overlay\").hide();\n    }); \n}\n\nfunction uploadPlaceholderImage(imgElem) {\n    $(\"#login-prompt\").hide();\n    const age = imgElem.getAttribute('data-age');\n    setTimeout(() => { setUserAge(age); }, 550);\n    /*\n    //img -> cvs -> blob isn't playing as nicely with formdata binary expectations on API\n    //skipping API call also helps mitigate flooding the prediction model during large labs\n    const cvs = document.createElement(\"canvas\");\n    cvs.height = imgElem.height;\n    cvs.width = imgElem.width;\n    cvs.getContext(\"2d\").drawImage(imgElem, 0, 0);\n\n    cvs.toBlob(imgBlob => {\n        handleFileUpload([imgBlob]);\n    });\n    */\n}\n\nfunction setUserAge(age) {\n    $(\"#login-overlay\").hide();\n    chat('Bot', `By my best guess, it looks like you're only ${age} years young! How may I help you?`);\n}\n      \nfunction invokeAjax(message) {\n    var contextdata = $('#id_contextdump').data('convContext');\n    console.log('contextdata',contextdata);\n        \n    var ajaxData = {};\n    ajaxData.msgdata = message;\n    if (contextdata) {\n        ajaxData.context = contextdata;    \n    }\n    else{\n        ajaxData.context = {\"private\":\"\"};\n    }\n\n    $.ajax({\n        type: 'POST',\n        url: BOTCHAT_URL,\n        data: ajaxData,\n        success: processOK,\n        error: processNotOK\n    });\n}",
         "output": "str",
-        "x": 497,
-        "y": 275,
+        "x": 489,
+        "y": 291,
         "wires": [
             [
-                "bb484f48.f89df",
-                "41ea854c.da2eac"
+                "46ba2c8e.938bf4",
+                "294b1fda.1fce8"
             ]
         ]
     },
     {
-        "id": "ac98fba2.12c498",
+        "id": "6f7f1a6d.da1a84",
         "type": "comment",
-        "z": "30a98903.561c16",
+        "z": "2e7d09d5.0a3ba6",
         "name": "Conversation BOT Template",
         "info": "",
-        "x": 313,
-        "y": 234,
+        "x": 305,
+        "y": 250,
         "wires": []
     },
     {
-        "id": "3585f83e.6e8808",
+        "id": "d59cf071.62126",
         "type": "comment",
-        "z": "30a98903.561c16",
+        "z": "2e7d09d5.0a3ba6",
         "name": "Conversation REST API",
         "info": "",
-        "x": 292,
-        "y": 346,
+        "x": 284,
+        "y": 362,
         "wires": []
     },
     {
-        "id": "f3a4a8da.8c1a98",
+        "id": "5e69e1f1.a4af5",
         "type": "debug",
-        "z": "30a98903.561c16",
+        "z": "2e7d09d5.0a3ba6",
         "name": "",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 948,
-        "y": 584,
+        "x": 940,
+        "y": 600,
         "wires": []
     },
     {
-        "id": "98385631.fe65e8",
+        "id": "c277ced.325863",
         "type": "debug",
-        "z": "30a98903.561c16",
+        "z": "2e7d09d5.0a3ba6",
         "name": "",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "true",
-        "x": 688,
-        "y": 604,
+        "x": 680,
+        "y": 620,
         "wires": []
     },
     {
-        "id": "bb484f48.f89df",
+        "id": "46ba2c8e.938bf4",
         "type": "debug",
-        "z": "30a98903.561c16",
+        "z": "2e7d09d5.0a3ba6",
         "name": "",
         "active": true,
         "tosidebar": true,
         "console": true,
         "tostatus": false,
         "complete": "true",
-        "x": 688,
-        "y": 165,
+        "x": 680,
+        "y": 181,
         "wires": []
     },
     {
-        "id": "ac9e8a96.9e7ad8",
+        "id": "44942faa.bfc5b",
         "type": "function",
-        "z": "30a98903.561c16",
+        "z": "2e7d09d5.0a3ba6",
         "name": "Change credentials here",
-        "func": "msg.user ='bca8126e-8235-4c39-8308-53b237363f58'\nmsg.password = 'X0XAai1CsT9gkX2jRLDCsHUwbiFaWbfXBvgbOTWyqPqNa7ocdQyui3li8xUR24mj'\nreturn msg;",
+        "func": "/* Change credentials here as explained in the document*/\nmsg.user ='7202e17e-bca7-41cb-b823-b3180bdd7ac4'\nmsg.password = 'jInQV9zKVPPt1rH4FxGv7KFXDKnM2ZeyXqsXnZEKKHmsj5umPhyNmnShmMizaTvL'\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 388,
-        "y": 504,
+        "x": 380,
+        "y": 520,
         "wires": [
             [
-                "dce61d42.485ed"
+                "46750009.52b2e"
             ]
         ]
     }
