@@ -1,0 +1,245 @@
+swagger: '2.0'
+info:
+  title: Account Management
+  description: >-
+    This is Swagger UI environment generated for the TMF Account Management
+    specification
+  version: '2.1'
+host: serverRoot
+basePath: /accountManagement
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  "/billingAccount":
+    get:
+      operationId: listBillingAccount
+      summary: List or find 'BillingAccount' objects
+      tags:
+        - billingAccount
+      parameters:
+        - type: string
+          required: false
+          in: query
+          name: fields
+          description: Comma separated properties to display in response
+        - type: integer
+          required: false
+          in: query
+          name: offset
+          description: Requested index for start of resources to be provided in response
+        - type: integer
+          required: false
+          in: query
+          name: limit
+          description: Requested number of resources to be provided in response
+      responses:
+        '200':
+          description: Ok
+          schema:
+            items:
+              $ref: '#/definitions/BillingAccount'
+            type: array
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Error'
+        '405':
+          description: Method Not allowed
+          schema:
+            $ref: '#/definitions/Error'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      operationId: createBillingAccount
+      summary: Creates a 'BillingAccount'
+      tags:
+        - billingAccount
+      parameters:
+        - schema:
+            $ref: '#/definitions/BillingAccount'
+          required: true
+          in: body
+          name: billingAccount
+          description: The Billing Account to be created
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/BillingAccount'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Error'
+        '405':
+          description: Method Not allowed
+          schema:
+            $ref: '#/definitions/Error'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  BillingAccount:
+    type: object
+    description: >-
+      A party account used for billing purposes. It includes a description of
+      the bill structure (frequency, presentation media, format and so on).
+    required:
+      - name
+      - relatedParty
+    properties:
+      paymentStatus:
+        type: string
+        description: 'The condition of the account, such as due, paid, in arrears.'
+      "baseType":
+        type: string
+        description: >-
+          Generic attribute indicating the base class type of the extension
+          class of the current object. Useful only when the class type of the
+          current  object is unknown to the implementation.
+      "schemaLocation":
+        type: string
+        description: >-
+          Generic attribute containing the link to the schema that defines the
+          structure of the class type of the current object.
+      "type":
+        type: string
+        description: Generic attribute containing the name of the resource class type
+      description:
+        type: string
+        description: Detailed description of the party account
+      href:
+        type: string
+        description: Unique reference of the account
+      lastModified:
+        type: string
+        format: date-time
+        description: Date of last modification of the account
+      name:
+        type: string
+        description: Name of the account
+      state:
+        type: string
+        description: >-
+          Contains the lifecycle state such as: Active, Closed, Suspended and so
+          on.
+      accountBalance:
+        type: array
+        items:
+          "$ref": "#/definitions/AccountBalance"        
+  AccountBalance:
+    type: object
+    description: Balances linked to the account
+    required:
+    - type
+    - amount
+    - validFor
+    properties:
+      "baseType":
+        type: string
+        description: Generic attribute indicating the base class type of the extension
+          class of the current object. Useful only when the class type of the current  object
+          is unknown to the implementation.
+      "schemaLocation":
+        type: string
+        description: Generic attribute containing the link to the schema that defines
+          the structure of the class type of the current object.
+      "type":
+        type: string
+        description: Generic attribute containing the name of the resource class type
+      amount:
+        "$ref": "#/definitions/Money"
+      validFor:
+        "$ref": "#/definitions/TimePeriod"
+  Money:
+    type: object
+    description: A base / value business entity used to represent money
+    properties:
+      unit:
+        type: string
+        description: Currency (ISO4217 norm uses 3 letters to define the currency)
+      value:
+        type: number
+        format: float
+        description: A positive floating point number
+  TimePeriod:
+    type: object
+    description: A base / value business entity used to represent a period of time
+      between two timepoints.
+    properties:
+      endDateTime:
+        type: string
+        format: date-time
+        description: An instant of time, ending at the TimePeriod.
+      startDateTime:
+        type: string
+        format: date-time
+        description: An instant of time, starting at the TimePeriod 
+  Error:
+    required:
+      - code
+      - reason
+    properties:
+      code:
+        type: integer
+        description: Application related code.
+      reason:
+        type: integer
+        description: Text that explains the reason for error.
+      message:
+        type: string
+        description: >-
+          (optional) Text that provide more details and corrective actions
+          related to the error.
+      status:
+        type: integer
+        description: (optional) http error code extension like 400-2
+      referenceError:
+        type: string
+        description: >-
+          (optional) A URL to online documentation that provides more
+          information about the error.
+      'type':
+        type: string
+        description: (optional) The class type of a REST resource.
+      'schemaLocation':
+        type: string
+        description: (optional) A link to the schema describing a REST resource.

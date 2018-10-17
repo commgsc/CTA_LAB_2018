@@ -1,0 +1,202 @@
+swagger: '2.0'
+info:
+  description: ''
+  version: '2.0'
+  title: API UsageManagement
+host: serverRoot
+basePath: /tmf-api/usageManagement/v2/
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /usage:
+    post:
+      tags:
+        - usage
+      operationId: usageCreate
+      summary: usageCreate
+      description: ''
+      deprecated: false
+      parameters:
+        - name: usage
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Usage'
+      responses:
+        '201':
+          description: Usage
+          schema:
+            $ref: '#/definitions/Usage'
+        '400':
+          description: Request error
+        '500':
+          description: Unexpected server error
+  '/usage/{usageId}':
+    delete:
+      tags:
+        - usage
+      operationId: usageDelete
+      summary: usageDelete
+      description: ''
+      deprecated: false
+      parameters:
+        - name: usageId
+          in: path
+          required: true
+          type: string
+      responses:
+        '204':
+          description: Successfully deleted
+        '400':
+          description: Request error
+        '404':
+          description: Not Found
+        '500':
+          description: Unexpected server error
+    get:
+      tags:
+        - usage
+      operationId: usageGet
+      summary: usageGet
+      description: ''
+      deprecated: false
+      parameters:
+        - name: usageId
+          in: path
+          required: true
+          type: string
+        - name: fields
+          in: query
+          required: false
+          description: ''
+          type: string
+      responses:
+        '200':
+          description: Usage
+          schema:
+            $ref: '#/definitions/Usage'
+        '400':
+          description: Request error
+        '404':
+          description: Not Found
+        '500':
+          description: Unexpected server error
+    put:
+      tags:
+        - usage
+      operationId: usageUpdate
+      summary: usageUpdate
+      description: ''
+      deprecated: false
+      parameters:
+        - name: usageId
+          in: path
+          required: true
+          type: string
+        - name: usage
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Usage'
+      responses:
+        '200':
+          description: Success Update Usage
+          schema:
+            $ref: '#/definitions/Usage'
+        '400':
+          description: Request error
+        '404':
+          description: Not Found
+        '500':
+          description: Unexpected server error
+definitions:
+  Usage:
+    type: object
+    properties:
+      id:
+        type: string
+      href:
+        type: string
+      date:
+        type: string
+        format: date-time
+      type:
+        type: string
+      description:
+        type: string
+      status:
+        type: string
+        enum:
+          - Received
+          - Rejected
+          - Recycled
+          - Guided
+          - Rated
+          - Rerate
+          - Billed
+      usageCharacteristic:
+        type: array
+        items:
+          $ref: '#/definitions/UsageCharacteristic'
+      relatedParty:
+        type: array
+        items:
+          $ref: '#/definitions/Reference'
+      ratedProductUsage:
+        type: array
+        items:
+          $ref: '#/definitions/RatedProductUsage'
+  RatedProductUsage:
+    type: object
+    properties:
+      ratingDate:
+        type: string
+        format: date-time
+      usageRatingTag:
+        type: string
+      isBilled:
+        type: boolean
+      ratingAmountType:
+        type: string
+      taxIncludedRatingAmount:
+        type: number
+        format: float
+      taxExcludedRatingAmount:
+        type: number
+        format: float
+      taxRate:
+        type: number
+        format: float
+      isTaxExempt:
+        type: boolean
+      offerTariffType:
+        type: string
+      bucketValueConvertedInAmount:
+        type: number
+        format: float
+      currencyCode:
+        type: string
+      productRef:
+        type: string
+  Reference:
+    type: object
+    properties:
+      id:
+        type: string
+      href:
+        type: string
+      role:
+        type: string
+      name:
+        type: string
+  UsageCharacteristic:
+    type: object
+    properties:
+      name:
+        type: string
+      value:
+        type: string

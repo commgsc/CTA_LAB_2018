@@ -1,0 +1,431 @@
+swagger: '2.0'
+info:
+  description: |-
+    ## TMF API Reference: TMF677 - Usage Consumption
+
+    ### Release: 17.5 - January 2018
+
+    This API covers the consumption follow up function providing ongoing information about usages related to any subscribed communication products (voice, data, TV,…) without having to wait the invoice production. These information may concern usages charged on a bucket supervised or not and so the remaining credits on the bucket. It allows customers or users to be informed on usages done and remaining credits on the buckets that they consume under their purchased offers and options.
+
+    The usage consumption API allow to view at a given point the balance and the consumption counters of the various buckets (SMS, Voice, Data for example) that one or more user(s) consume with each of his devices, according to the purchased offers and options.
+
+    ### Resources 
+    - **usageConsumptionReport** : an usage consumption report retrieves the data related to these balances and various consumption counters and calculated at the time of the request by the server.
+
+    ### Operations
+    The use of the both resources described in this document is conditioned by the capability of the server:
+    - If the server could perform the calculation and so give the usage consumption report in synchronous mode according to the criteria given by the API requester, a GET operation with filter criteria on usageConsumptionReport resource could be used. We could accept to use a GET operation in this context because the server calculates the data given in the usage consumption report without necessarily store it.
+    - We must also anticipate the use case where the server could only give an asynchronous response to the calculation of an usage consumption report requested by the API requester. In this case, a POST operation on usageConsumptionReportRequest could be sent by the API Requester asking the server that a usage consumption report calculation has to be performed. Then, the API requester could follow the process with a GET operation on this same resource retrieving the status of the request. The server could also use the notification pattern to inform the API requester that the usage consumption report is available
+
+    Copyright © TM Forum 2018. All Rights Reserved.
+  version: '1.0'
+  title: API UsageConsumption
+host: serverRoot
+basePath: /tmf-api/usageConsumption/v1/
+schemes:
+  - https
+consumes:
+  - application/json;charset=utf-8
+produces:
+  - application/json;charset=utf-8
+tags:
+  - name: UsageConsumptionReport
+    description: ''
+paths:
+  /usageConsumptionReport:
+    get:
+      tags:
+        - UsageConsumptionReport
+      operationId: usageConsumptionReportFind
+      summary: Query the calculation of an usage consumption report in synchronous mode
+      description: |
+        This operation is used to request the calculation of a new usage consumption report for a specific product identified by a msisdn number for example. 
+        Attribute selection is enabled for all first level attributes.
+        Filtering may be available depending on the compliance level supported by an implementation.
+
+        Specific business errors for current operation will be encapsulated in
+
+        HTTP Response 422 Unprocessable entity
+      deprecated: false
+      parameters:
+        - name: fields
+          required: false
+          in: query
+          description: Attribute selection
+          type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/UsageConsumptionReport'
+        '400':
+          description: |-
+            Bad Request
+
+            List of supported error codes:
+            - 20: Invalid URL parameter value
+            - 21: Missing body
+            - 22: Invalid body
+            - 23: Missing body field
+            - 24: Invalid body field
+            - 25: Missing header
+            - 26: Invalid header value
+            - 27: Missing query-string parameter
+            - 28: Invalid query-string parameter value
+          schema:
+            $ref: '#/definitions/ErrorRepresentation'
+        '404':
+          description: |-
+            Not Found
+
+            List of supported error codes:
+            - 60: Resource not found
+          schema:
+            $ref: '#/definitions/ErrorRepresentation'
+        '405':
+          description: |-
+            Method Not Allowed
+
+            List of supported error codes:
+            - 61: Method not allowed
+          schema:
+            $ref: '#/definitions/ErrorRepresentation'
+        '422':
+          description: |-
+            Unprocessable entity
+
+            Functional error
+          schema:
+            $ref: '#/definitions/ErrorRepresentation'
+        '500':
+          description: |-
+            Internal Server Error
+
+            List of supported error codes:
+            - 1: Internal error
+          schema:
+            $ref: '#/definitions/ErrorRepresentation'
+  '/usageConsumptionReport/{id}':
+    get:
+      tags:
+        - UsageConsumptionReport
+      operationId: usageConsumptionReportGet
+      summary: Retrieve an existing usage consumption report
+      description: |
+        This operation retrieves an usage report entity. This operation could be used only if the server has saved the usage consumption report on its database after calculation.
+        Attribute selection is enabled for all first level attributes.
+        Filtering on sub-resources may be available depending on the compliance level supported by an implementation.
+
+        Specific business errors for current operation will be encapsulated in
+
+        HTTP Response 422 Unprocessable entity
+      deprecated: false
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Unique identifier of the usage consumption report
+        - name: fields
+          required: false
+          in: query
+          description: Attribute selection
+          type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/UsageConsumptionReport'
+        '400':
+          description: |-
+            Bad Request
+
+            List of supported error codes:
+            - 20: Invalid URL parameter value
+            - 21: Missing body
+            - 22: Invalid body
+            - 23: Missing body field
+            - 24: Invalid body field
+            - 25: Missing header
+            - 26: Invalid header value
+            - 27: Missing query-string parameter
+            - 28: Invalid query-string parameter value
+          schema:
+            $ref: '#/definitions/ErrorRepresentation'
+        '404':
+          description: |-
+            Not Found
+
+            List of supported error codes:
+            - 60: Resource not found
+          schema:
+            $ref: '#/definitions/ErrorRepresentation'
+        '405':
+          description: |-
+            Method Not Allowed
+
+            List of supported error codes:
+            - 61: Method not allowed
+          schema:
+            $ref: '#/definitions/ErrorRepresentation'
+        '422':
+          description: |-
+            Unprocessable entity
+
+            Functional error
+          schema:
+            $ref: '#/definitions/ErrorRepresentation'
+        '500':
+          description: |-
+            Internal Server Error
+
+            List of supported error codes:
+            - 1: Internal error
+          schema:
+            $ref: '#/definitions/ErrorRepresentation'
+    delete:
+      tags:
+        - UsageConsumptionReport
+      operationId: usageConsumptionReportDelete
+      summary: Delete an existing usage consumption report
+      description: |
+        This operation deletes a usage report entity.
+        Note: this operation is not available only to ADMIN API users
+
+        Specific business errors for current operation will be encapsulated in
+
+        HTTP Response 422 Unprocessable entity
+      deprecated: false
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Unique identifier of the usage consumption report
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: |-
+            Bad Request
+
+            List of supported error codes:
+            - 20: Invalid URL parameter value
+            - 21: Missing body
+            - 22: Invalid body
+            - 23: Missing body field
+            - 24: Invalid body field
+            - 25: Missing header
+            - 26: Invalid header value
+            - 27: Missing query-string parameter
+            - 28: Invalid query-string parameter value
+          schema:
+            $ref: '#/definitions/ErrorRepresentation'
+        '404':
+          description: |-
+            Not Found
+
+            List of supported error codes:
+            - 60: Resource not found
+          schema:
+            $ref: '#/definitions/ErrorRepresentation'
+        '405':
+          description: |-
+            Method Not Allowed
+
+            List of supported error codes:
+            - 61: Method not allowed
+          schema:
+            $ref: '#/definitions/ErrorRepresentation'
+        '422':
+          description: |-
+            Unprocessable entity
+
+            Functional error
+          schema:
+            $ref: '#/definitions/ErrorRepresentation'
+        '500':
+          description: |-
+            Internal Server Error
+
+            List of supported error codes:
+            - 1: Internal error
+          schema:
+            $ref: '#/definitions/ErrorRepresentation'
+definitions:
+  ErrorRepresentation:
+    description: Standard TMF error representation
+    required:
+      - code
+    type: object
+    properties:
+      code:
+        description: Application related code (as defined in the API or from a common list)
+        type: integer
+        format: int32
+      reason:
+        description: Text that explains the reason for error. This can be shown to a client user.
+        type: string
+      message:
+        description: Text that provides more details and corrective actions related to the error. This can be shown to a client user.
+        type: string
+      status:
+        description: http error code extension like 400-2
+        type: string
+      referenceError:
+        description: URL pointing to documentation describing the error
+        type: string
+  UsageConsumptionReport:
+    description: 'An usage consumption report enables to know at a given point the balances and the consumption counters related to various buckets (SMS, Voice, Data for example). It could be calculated for a device identified by a public key (msisdn number for a mobile device for example or PSTN or VOIP number for a fix device), for a subscribed offer or option or for an user.'
+    type: object
+    properties:
+      id:
+        description: Unique identifier of the usage consumption report given by the server
+        type: string
+      href:
+        description: Hyperlink to access the usage consumption report
+        type: string
+      name:
+        description: Usage consumption report name
+        type: string
+      description:
+        description: Free short text describing the usage consumption report content
+        type: string
+      effectiveDate:
+        description: Date and time when the usage consumption report was calculated and generated
+        type: string
+        format: date-time
+      '@baseType':
+        description: Indicates the base (class) type of the usage consumption report
+        type: string
+      '@type':
+        description: Indicates the (class) type of the usage consumption report
+        type: string
+      '@schemaLocation':
+        description: Link to the schema describing the REST resource
+        type: string
+      relatedParty:
+        $ref: '#/definitions/RelatedPartyRef'
+      bucket:
+        type: array
+        items:
+          $ref: '#/definitions/Bucket'
+  Bucket:
+    description: 'A bucket represents a quantity of usage, as 2 hours national calls or 50 sms for example. It could be either a quantity or an amount in a currency (i.e. It could represent a fixed number of SMS, MMS, minutes of calls, quantity of data, number of events as well as a specific amount in a given currency). It requires one or more network products from which usages will debit the bucket.'
+    type: object
+    properties:
+      id:
+        description: Unique identifier of the bucket
+        type: string
+      name:
+        description: Bucket name
+        type: string
+      usageType:
+        description: 'Type of usage concerned by the bucket (voice, sms, data,…)'
+        type: string
+      isShared:
+        description: True if the bucket is shared between several devices or users
+        type: boolean
+      '@type':
+        description: Indicates the (class) type of bucket
+        type: string
+      '@schemaLocation':
+        description: Link to the schema describing the REST resource
+        type: string
+      product:
+        $ref: '#/definitions/Product'
+      bucketBalance:
+        type: array
+        items:
+          $ref: '#/definitions/Balance'
+      bucketCounter:
+        type: array
+        items:
+          $ref: '#/definitions/ConsumptionCounter'
+  RelatedPartyRef:
+    description: Related party reference
+    type: object
+    properties:
+      id:
+        description: Unique identifier of the related party
+        type: string
+      href:
+        description: 'Reference of the related party, could be a party reference or a party role reference'
+        type: string
+      name:
+        description: Name of the related party
+        type: string
+      role:
+        description: Role played by the related party
+        type: string
+      '@referredType':
+        description: Indicates the type of related party
+        type: string
+  Product:
+    description: An instantiated product corresponding to a simple product offering subscribed by a customer
+    type: object
+    properties:
+      id:
+        description: Unique identifier of the product
+        type: string
+      href:
+        description: Reference of the product
+        type: string
+      name:
+        description: Product Name
+        type: string
+      publicIdentifier:
+        description: Public number associated to the product (msisdn number for mobile line for example)
+        type: string
+      user:
+        $ref: '#/definitions/RelatedPartyRef'
+  Balance:
+    description: 'The balance defines the remaining allowed product usage quantity in terms of volume, time, currency or events. It corresponds to the initial allowed usage quantity minus the usage consumed on the bucket.'
+    type: object
+    properties:
+      unit:
+        description: Code of the unit used to specify the given value of the balance. It could be different from the bucket unit
+        type: string
+      remainingValue:
+        description: Numeric remaining value for the bucket given in the balance unit (for example 1.9). This numeric value could be used for calculation for example
+        type: integer
+        format: int64
+      remainingValueLabel:
+        description: Remaining value in a formatted string for the bucket given in the balance unit (for example 1.9 Gb). This formatted string could be used for display needs for example
+        type: string
+      '@type':
+        description: Indicates the (class) type of the bucket balance
+        type: string
+      '@schemaLocation':
+        description: Link to the schema describing the REST resource
+        type: string
+  ConsumptionCounter:
+    description: The consumption counters detail for example the different kind of consumption done on the bucket
+    type: object
+    properties:
+      counterType:
+        description: Type of the consumption counter. We can give for example a counter of the used value
+        type: string
+      level:
+        description: Counter level. The given counter can be given globally for the bucket or detailed by user or by product for example in case of shared bucket
+        type: string
+      unit:
+        description: Unit of the counter
+        type: string
+      value:
+        description: Numeric value of the bucket counter in the given unit
+        type: integer
+        format: int64
+      valueLabel:
+        description: Value of the counter in a formatted string used for display needs for example
+        type: string
+      '@type':
+        description: Indicates the (class) type of consumption counter
+        type: string
+      '@schemaLocation':
+        description: Link to the schema describing the REST resource
+        type: string
+      user:
+        $ref: '#/definitions/RelatedPartyRef'
