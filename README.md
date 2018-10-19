@@ -28,19 +28,49 @@ The first wave of innovative projects to use the Open Digital lab are the proof 
 TM Forum APIs are replicated using IBM API Connect and these APIs are invoked using IBM Functions (openwhisk). The scope of this lab is to create a sample self-care application which invokes TM Forum APIs in a web chat application using node-red, openwhisk and Watson Assistant(Conversation). So, the lab scope includes creation of IBM Functions to utilize pre-built TM Forum APIs and then create a Watson Assistant service (Conversation) which calls the IBM Functions to get the results. Finally, to create a node-red application from the pre-built flow to link web chat application, Watson Assistant and openwhisk and provide response to customers.
 
 ## Architecture
-![**Architecture**](readme_images/Architecture.jpg)
+![**Architecture**](readme_images/arch.png)
 
 ## Steps for the Lab
-1. Environment Setup
-    - Creating an IBM Cloud Account
-    - Creating a Watson Assistant Service
-    - Instantiate a Node-red starter
-
-2. Self-Care App Lab
-    - Create and configure IBM Functions Service
-    - Create a sample conversation using Watson Assistant
-    - Importing Node-RED Flow of the application
-    - Test the Node-RED application
-    - Create Node-RED flow (optional)
-
-
+1. ENVIRONMENT SETUP
+    - CREATE AN IBM CLOUD ACCOUNT (SKIP IF YOU HAVE ONE)
+    - CREATE A KUBERNETES INSTANCE ON IBM CLOUD
+    - INSTALL IBM BLUEMIX CLI
+    - INSTALL NODE.JS
+    - INSTALL API CONNECT CLI
+    - INSTALL KUBERNETES CLI
+    - CREATE A WATSON ASSISTANCE SERVICE
+    - CREATE API CONNECT INSTANCE
+2. SECTION 1 – IBM ONE CLOUD
+    - IBM CLOUD (PUBLIC CLOUD)
+    --Deploy the TMF Open Digital Lab on IBM Cloud on Kubernetes
+3. SECTION 2 – CREATING A SELF-CARE APP
+    - MICROSERVICES
+    -- API Connect
+    -- Create an APIC project using CLI
+    -- Accessing database credentials
+    -- Create a data Source
+    -- Create API’s using a swagger file
+    -- Edit Model and API
+    -- Sample input data to be inserted into database
+    -- Test and Explore your Loopback application
+    -- Publish in IBM Cloud
+    -- Test API getting data
+    -- Test API pushing data (optional)
+    - FUNCTIONS AS A SERVICE (SERVERLESS APPLICATIONS)
+    -- IBM Functions
+    -- Access IBM Functions
+    -- Get IBM Functions credentials
+    -- Create action 1 and test
+    -- Create action 2 and test
+    -- Create action 3 and test
+    - AI POWERED CHATBOT
+    -- Watson Assistant
+    -- Creating a workspace by uploading a JSON
+    -- Edit the dialog Nodes to point to the correct IBM Functions
+    -- Test the robot
+    - INTERFACING WITH THE END USER
+    -- Node-red UI
+    -- Navigate to Node-Red flow editor
+    -- Change credentials (optional)
+    -- Access the UI
+    -- Test the use case
