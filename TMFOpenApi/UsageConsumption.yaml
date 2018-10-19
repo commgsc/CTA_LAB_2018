@@ -297,13 +297,13 @@ definitions:
         description: Date and time when the usage consumption report was calculated and generated
         type: string
         format: date-time
-      '@baseType':
+      'baseType':
         description: Indicates the base (class) type of the usage consumption report
         type: string
-      '@type':
+      'type':
         description: Indicates the (class) type of the usage consumption report
         type: string
-      '@schemaLocation':
+      'schemaLocation':
         description: Link to the schema describing the REST resource
         type: string
       relatedParty:
@@ -328,10 +328,10 @@ definitions:
       isShared:
         description: True if the bucket is shared between several devices or users
         type: boolean
-      '@type':
+      'type':
         description: Indicates the (class) type of bucket
         type: string
-      '@schemaLocation':
+      'schemaLocation':
         description: Link to the schema describing the REST resource
         type: string
       product:
@@ -360,7 +360,7 @@ definitions:
       role:
         description: Role played by the related party
         type: string
-      '@referredType':
+      'referredType':
         description: Indicates the type of related party
         type: string
   Product:
@@ -395,10 +395,10 @@ definitions:
       remainingValueLabel:
         description: Remaining value in a formatted string for the bucket given in the balance unit (for example 1.9 Gb). This formatted string could be used for display needs for example
         type: string
-      '@type':
+      'type':
         description: Indicates the (class) type of the bucket balance
         type: string
-      '@schemaLocation':
+      'schemaLocation':
         description: Link to the schema describing the REST resource
         type: string
   ConsumptionCounter:
@@ -421,10 +421,10 @@ definitions:
       valueLabel:
         description: Value of the counter in a formatted string used for display needs for example
         type: string
-      '@type':
+      'type':
         description: Indicates the (class) type of consumption counter
         type: string
-      '@schemaLocation':
+      'schemaLocation':
         description: Link to the schema describing the REST resource
         type: string
       user:
