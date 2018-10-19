@@ -1,9 +1,9 @@
-# Self Care App for TM Forum Lab
+# Self Care App for CTA Lab
 
 ## Prerequisites
 1. Create IBM Cloud ID (Mandatory) :  
 check step by step instructions from 
-[https://github.com/commgsc/TMF_ActionWeek_Clinic_Lab/blob/master/Pre-requisites/TMF_HandsOnLab-CreateAccount.pdf](https://github.com/commgsc/TMF_ActionWeek_Clinic_Lab/blob/master/Pre-requisites/TMF_HandsOnLab-CreateAccount.pdf) -  (save and remember your login id/pwd to be used during the lab)
+[https://github.com/commgsc/CTA_LAB_2018/blob/master/Pre-requisites/TMF_HandsOnLab-CreateAccount.pdf](https://github.com/commgsc/CTA_LAB_2018/blob/master/Pre-requisites/TMF_HandsOnLab-CreateAccount.pdf) -  (save and remember your login id/pwd to be used during the lab)
 
 2. Register and explore Open API's (Optional) : https://www.tmforum.org/open-apis/
 
@@ -41,9 +41,7 @@ TM Forum APIs are replicated using IBM API Connect and these APIs are invoked us
    - CREATE A WATSON ASSISTANCE SERVICE
    - CREATE API CONNECT INSTANCE
    
-2. **SECTION 1: IBM ONE CLOUD**
-   - IBM CLOUD (PUBLIC CLOUD)
-     - Deploy the TMF Open Digital Lab on IBM Cloud on Kubernetes
+2. **SECTION 1: Deploy the TMF Open Digital Lab on IBM Cloud on Kubernetes**
      
 3. **SECTION 2: CREATING A SELF-CARE APP**
    - **MICROSERVICES**
@@ -57,7 +55,6 @@ TM Forum APIs are replicated using IBM API Connect and these APIs are invoked us
      - Test and Explore your Loopback application
      - Publish in IBM Cloud
      - Test API getting data
-     - Test API pushing data (optional)
    - **FUNCTIONS AS A SERVICE (SERVERLESS APPLICATIONS)**
      - IBM Functions
      - Access IBM Functions
@@ -74,5 +71,4 @@ TM Forum APIs are replicated using IBM API Connect and these APIs are invoked us
      - Node-red UI
      - Navigate to Node-Red flow editor
      - Change credentials (optional)
-     - Access the UI
-     - Test the use case
+     - Access the UI and test the use case
