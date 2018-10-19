@@ -31,7 +31,7 @@ TM Forum APIs are replicated using IBM API Connect and these APIs are invoked us
 ![**Architecture**](readme_images/arch.PNG)
 
 ## Steps for the Lab
-1. ENVIRONMENT SETUP
+1. **ENVIRONMENT SETUP**
    - CREATE AN IBM CLOUD ACCOUNT (SKIP IF YOU HAVE ONE)
    - CREATE A KUBERNETES INSTANCE ON IBM CLOUD
    - INSTALL IBM BLUEMIX CLI
@@ -40,11 +40,13 @@ TM Forum APIs are replicated using IBM API Connect and these APIs are invoked us
    - INSTALL KUBERNETES CLI
    - CREATE A WATSON ASSISTANCE SERVICE
    - CREATE API CONNECT INSTANCE
-2. SECTION 1: IBM ONE CLOUD
+   
+2. **SECTION 1: IBM ONE CLOUD**
    - IBM CLOUD (PUBLIC CLOUD)
      - Deploy the TMF Open Digital Lab on IBM Cloud on Kubernetes
-3. SECTION 2: CREATING A SELF-CARE APP
-   - MICROSERVICES
+     
+3. **SECTION 2: CREATING A SELF-CARE APP**
+   - **MICROSERVICES**
      - API Connect
      - Create an APIC project using CLI
      - Accessing database credentials
@@ -56,19 +58,19 @@ TM Forum APIs are replicated using IBM API Connect and these APIs are invoked us
      - Publish in IBM Cloud
      - Test API getting data
      - Test API pushing data (optional)
-   - FUNCTIONS AS A SERVICE (SERVERLESS APPLICATIONS)
+   - **FUNCTIONS AS A SERVICE (SERVERLESS APPLICATIONS)**
      - IBM Functions
      - Access IBM Functions
      - Get IBM Functions credentials
      - Create action 1 and test
      - Create action 2 and test
      - Create action 3 and test
-   - AI POWERED CHATBOT
+   - **AI POWERED CHATBOT**
      - Watson Assistant
      - Creating a workspace by uploading a JSON
      - Edit the dialog Nodes to point to the correct IBM Functions
      - Test the robot
-   - INTERFACING WITH THE END USER
+   - **INTERFACING WITH THE END USER**
      - Node-red UI
      - Navigate to Node-Red flow editor
      - Change credentials (optional)
